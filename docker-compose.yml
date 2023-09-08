@@ -1,0 +1,64 @@
+#
+# Ci-dessous la config qui permet de lancer projet2024-docker
+#
+# Remarque: avant de lancer docker-compose up, il faut régler le fichier .env
+# en partant du fichier .env-dist qui donne les variables d'environnements
+# à personnaliser et des exemples de valeurs.
+#
+
+version: "3.5"
+
+services:
+
+  projet2024:
+    image: abesesr/projet2024:${PROJET2024_VERSION}
+    container_name: projet2024
+    restart: unless-stopped
+    mem_limit: ${MEM_LIMIT}
+    memswap_limit: ${MEM_LIMIT}
+    cpus: ${CPU_LIMIT}
+    environment:
+      PROJET2024_HTTP_BASEURL: ${PROJET2024_HTTP_BASEURL}
+    ports:
+      - ${PROJET2024_HTTP_PORT}:80
+    labels:
+      # pour envoyer les logs dans le puits de log de l'abes
+      - "co.elastic.logs/enabled=true"
+      - "co.elastic.logs/processors.add_fields.target="
+      - "co.elastic.logs/processors.add_fields.fields.abes_appli=projet2024"
+      - "co.elastic.logs/processors.add_fields.fields.abes_middleware=nginx"
+      # pour que les mises à jour de cette image soient auto-déployées par watchtower
+      - "com.centurylinklabs.watchtower.scope=projet2024-watchtower-scope"
+
+
+
+
+
+  #######################################
+  # projet2024-watchtower
+  projet2024-watchtower:
+    image: containrrr/watchtower:1.4.0
+    container_name: projet2024-watchtower
+    restart: unless-stopped
+    mem_limit: ${MEM_LIMIT}
+    memswap_limit: ${MEM_LIMIT}
+    cpus: ${CPU_LIMIT}
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      WATCHTOWER_CLEANUP: "true"
+      WATCHTOWER_POLL_INTERVAL: 60
+      WATCHTOWER_DEBUG: "false"
+      WATCHTOWER_NO_STARTUP_MESSAGE: "true"
+      WATCHTOWER_WARN_ON_HEAD_FAILURE: "never"
+      WATCHTOWER_RUN_ONCE: ${PROJET2024_WATCHTOWER_RUN_ONCE}
+      WATCHTOWER_NOTIFICATIONS: "slack"
+      WATCHTOWER_NOTIFICATION_SLACK_HOOK_URL: ${PROJET2024_WATCHTOWER_NOTIFICATION_SLACK_HOOK_URL}
+      WATCHTOWER_NOTIFICATION_SLACK_IDENTIFIER: ${PROJET2024_WATCHTOWER_NOTIFICATION_SLACK_IDENTIFIER}
+      WATCHTOWER_NOTIFICATION_SLACK_CHANNEL: "#notif-projet2024"
+      WATCHTOWER_SCOPE: "projet2024-watchtower-scope"
+    labels:
+      - "com.centurylinklabs.watchtower.scope=projet2024-watchtower-scope"
+
+
+

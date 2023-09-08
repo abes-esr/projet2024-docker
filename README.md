@@ -8,6 +8,7 @@ Les URLs correspondantes aux déploiements en local, dev, test et prod sont les 
 
 - local :
   - http://127.0.0.1:16080/
+  - http://127.0.0.1:3000/ (c'est l'URL par défaut lorsque l'on démarre docusaurus en mode développement)
 - dev :
   - https://projet2024-dev.abes.fr
   - http://diplotaxis2-dev.v212.abes.fr:16080/

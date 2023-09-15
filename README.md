@@ -1,5 +1,7 @@
 # projet2024-docker
 
+[![Docker Pulls](https://img.shields.io/docker/pulls/abesesr/projet2024.svg)](https://hub.docker.com/r/abesesr/projet2024/)
+
 Configuration docker 🐳 pour déployer le site web https://projet2024.abes.fr
 
 ## URLs

@@ -25,7 +25,7 @@ services:
       # pour envoyer les logs dans le puits de log de l'abes
       - "co.elastic.logs/enabled=true"
       - "co.elastic.logs/processors.add_fields.target="
-      - "co.elastic.logs/processors.add_fields.fields.abes_appli=projet2024"
+      - "co.elastic.logs/processors.add_fields.fields.abes_appli=projetetab"
       - "co.elastic.logs/processors.add_fields.fields.abes_middleware=nginx"
       # pour que les mises à jour de cette image soient auto-déployées par watchtower
       - "com.centurylinklabs.watchtower.scope=projet2024-watchtower-scope"

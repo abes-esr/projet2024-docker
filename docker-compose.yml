@@ -37,7 +37,7 @@ services:
   #######################################
   # projet2024-watchtower
   projet2024-watchtower:
-    image: containrrr/watchtower:1.4.0
+    image: containrrr/watchtower:1.7.1
     container_name: projet2024-watchtower
     restart: unless-stopped
     mem_limit: ${MEM_LIMIT}

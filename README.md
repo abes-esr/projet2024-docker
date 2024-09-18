@@ -12,13 +12,13 @@ Les URLs correspondantes aux déploiements en local, dev, test et prod sont les 
 - local :
   - http://127.0.0.1:16080/
   - http://127.0.0.1:3000/ (c'est l'URL par défaut lorsque l'on démarre docusaurus en mode développement)
-- dev :
+- dev (branche develop du [code source](https://github.com/abes-esr/projet2024)):
   - https://projet2024-dev.abes.fr
   - http://diplotaxis2-dev.v212.abes.fr:16080/
-- test :
+- test (branche main du [code source](https://github.com/abes-esr/projet2024))
   - https://projet2024-test.abes.fr
   - http://diplotaxis2-test.v202.abes.fr:16080/
-- prod
+- prod (dernier tag/version git du [code source](https://github.com/abes-esr/projet2024))
   - https://projet2024.abes.fr
   - http://diplotaxis1-prod.v102.abes.fr:16080/
 
